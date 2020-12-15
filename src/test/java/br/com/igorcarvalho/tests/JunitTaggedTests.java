@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Para filtrar os tests pelas tags usamos no surfire
  * plugin do maven as tags <includeTags>nome-da-tag</includeTags>
  * e <excludeTags>nome-da-tag</excludeTags>
- * as
  * */
 @Tag("nome-da-tag")
 @SpringBootTest
