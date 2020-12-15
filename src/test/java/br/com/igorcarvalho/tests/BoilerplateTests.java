@@ -82,12 +82,11 @@ class BoilerplateTests {
      * */
     @AfterEach
     void afterEachTest() {
-        System.out.println("Roda depois de cada teste");
     }
 
     /**
      * Qualquer metodo que tenha a anotation @AfterAll
-     * vai ser executado depois de todos os teste
+     * vai ser executado depois de todos os testes
      * */
     @AfterAll
     static void afterAllTests() {
