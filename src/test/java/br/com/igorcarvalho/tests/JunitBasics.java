@@ -68,6 +68,18 @@ class JunitBasics {
 
     }
 
+    /**
+     * @RepeatedTest
+     * Faz com q um teste seja reptido o numero de vezes solicitadas no value
+     * e nas repetiçoes exibe o texto contido no @RepeatedTest(name="")
+     * */
+    @DisplayName("Titulo principal")
+    @RepeatedTest(value = 5,
+            name = "Titulo da repetição 5x : repetição {currentRepetition} / {totalRepetitions}")
+    void repeatedTest(){
+     System.out.println("Rodando repetição do teste");
+    }
+
     @Test
     void exceptionTesting() {
         assertThrows(IllegalArgumentException.class,
