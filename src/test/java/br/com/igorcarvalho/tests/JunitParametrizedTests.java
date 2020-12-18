@@ -1,12 +1,17 @@
 package br.com.igorcarvalho.tests;
 
+import org.assertj.core.util.Strings;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.math.BigDecimal;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -45,11 +50,11 @@ class JunitParametrizedTests {
      * mode = EnumSource.Mode.INCLUDE, testa apenas
      * as constantes do enum q foram selecionadas no
      * names = {"TESTE1","TESTE2"}
-     * */
+     */
     @ParameterizedTest
     @EnumSource(value = RandomTypeEnum.class,
             mode = EnumSource.Mode.INCLUDE,
-            names = {"TESTE1","TESTE2"})
+            names = {"TESTE1", "TESTE2"})
     void enumSourceWithModeIncludeParametrizedTest(RandomTypeEnum args) {
         assertNotNull(args);
     }
@@ -58,7 +63,7 @@ class JunitParametrizedTests {
      * mode = EnumSource.Mode.EXCLUDE, exclui do teste
      * as constantes do enum q foram selecionadas no
      * names = {"TESTE1","TESTE2"}
-     * */
+     */
     @ParameterizedTest
     @EnumSource(value = RandomTypeEnum.class,
             mode = EnumSource.Mode.EXCLUDE,
@@ -71,7 +76,7 @@ class JunitParametrizedTests {
      * mode = EnumSource.Mode.MATCH_ALL, testa apenas
      * as constantes do enum q foram selecionadas no
      * names = {"TESTE1","TESTE2"} porem aceita ReGex
-     * */
+     */
     @ParameterizedTest
     @EnumSource(value = RandomTypeEnum.class,
             mode = EnumSource.Mode.MATCH_ALL,
@@ -84,7 +89,7 @@ class JunitParametrizedTests {
      * mode = EnumSource.Mode.MATCH_ALL, testa quaisquer
      * constantes do enum q foram selecionadas no
      * names = {"TESTE1","TESTE2"} porem aceita ReGex
-     * */
+     */
     @ParameterizedTest
     @EnumSource(value = RandomTypeEnum.class,
             mode = EnumSource.Mode.MATCH_ANY,
@@ -92,6 +97,52 @@ class JunitParametrizedTests {
     void enumSourceWithModeMatchAnyetrizedTest(RandomTypeEnum args) {
         assertNotNull(args);
     }
+
+
+    private static Stream<Arguments> stringAndBooleanProvider() {
+        return Stream.of(
+                Arguments.of(null, true),
+                Arguments.of("", true),
+                Arguments.of("  ", true),
+                Arguments.of("not blank", false)
+        );
+    }
+
+    /**
+     * @MethodSource("provideStringsForIsBlank") recebe um string com msm nome do metdodo estatico que
+     * retorna uma Stream<Arguments> os quais devem ser passados
+     * na assinatura do metodo de teste
+     * O teste vai rodar uma vez para cada elemento na stream.
+     */
+    @ParameterizedTest
+    @MethodSource("stringAndBooleanProvider")
+    void multipleValuesMethodSourceTest(String input, boolean expected) {
+        assertEquals(expected, Strings.isNullOrEmpty(input));
+    }
+
+    private static Stream<Arguments> bigDecimalProvider() {
+        return Stream.of(
+                Arguments.of(BigDecimal.valueOf(10)),
+                Arguments.of(BigDecimal.valueOf(115)),
+                Arguments.of(BigDecimal.valueOf(23)),
+                Arguments.of(BigDecimal.valueOf(456)),
+                Arguments.of(BigDecimal.valueOf(345))
+        );
+    }
+
+    /**
+     * Nessa caso poderia ter sido passado
+     * uma classe qualquer de dominio do software
+     * para ser testada, ou ate mesmo mais de uma classes
+     * de dominio para serem comparadas uma com a outra
+     * igual foi feito no metodo anterior
+     * */
+    @ParameterizedTest
+    @MethodSource("bigDecimalProvider")
+    void singleValuesMethodSourceTest(BigDecimal input) {
+        assertNotNull(input);
+    }
+
 
 }
 
