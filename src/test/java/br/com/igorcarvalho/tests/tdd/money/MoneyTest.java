@@ -8,10 +8,10 @@ class DollarTest {
 
     @Test
     void multiplicationTest() {
-        Dollar dollar = new Dollar(5.0);
-        dollar.times(2.0);
-        assertEquals(10, dollar.amount);
+        Dollar initialValue = new Dollar(5.0);
+        Dollar finalValue = initialValue.times(2.0);
+        assertEquals(10, finalValue.amount);
     }
 
-    
+
 }
