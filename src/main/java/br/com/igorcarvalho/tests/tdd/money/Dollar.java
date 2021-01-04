@@ -2,7 +2,7 @@ package br.com.igorcarvalho.tests.tdd.money;
 
 public class Dollar {
 
-    public final double amount;
+    private final double amount;
 
     public Dollar(double value) {
         this.amount=value;
@@ -10,5 +10,9 @@ public class Dollar {
 
     public Dollar times(double value) {
         return new Dollar(this.amount*value);
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }
