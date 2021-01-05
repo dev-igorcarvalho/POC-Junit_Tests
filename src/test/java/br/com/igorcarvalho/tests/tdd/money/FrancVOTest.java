@@ -26,7 +26,8 @@ class FrancVOTest {
         assertAll("equality test",
                 () -> assertEquals(fiveFrancs, new FrancVO(5.0)),
                 () -> assertNotEquals(fiveFrancs, new FrancVO(7.0)),
-                () -> assertNotEquals(fiveFrancs, new DollarVO(7.0))
+                () -> assertNotEquals(fiveFrancs, new DollarVO(7.0) {
+                })
         );
     }
 }

@@ -1,6 +1,6 @@
 package br.com.igorcarvalho.tests.tdd.money;
 
-public class MoneyVO {
+public abstract class MoneyVO {
 
     protected final double amount;
 
@@ -8,9 +8,11 @@ public class MoneyVO {
         this.amount = value;
     }
 
-    protected double getAmount() {
+    public double getAmount() {
         return amount;
     }
+
+    public abstract MoneyVO times(final double value);
 
     @Override
     public boolean equals(Object o) {
