@@ -16,8 +16,8 @@ class DollarVOTest {
 
     @Test
     void multiplicationTest() {
-        DollarVO finalValue = fiveDollars.times(2.0);
-        assertEquals(10, finalValue.getAmount());
+        DollarVO tenDollars = fiveDollars.times(2.0);
+        assertEquals(new DollarVO(10.0), tenDollars);
     }
 
     @Test
