@@ -28,4 +28,9 @@ class DollarVOTest {
                 () -> assertNotEquals(fiveDollars, new FrancVO(5.0))
         );
     }
+
+    @Test
+    void currencyEqualityTest() {
+        assertEquals(CurrencyTypeEnum.DOLLAR, fiveDollars.currency());
+    }
 }

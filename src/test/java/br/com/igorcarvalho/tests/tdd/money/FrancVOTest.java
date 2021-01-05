@@ -30,4 +30,9 @@ class FrancVOTest {
                 })
         );
     }
+
+    @Test
+    void currencyEqualityTest() {
+        assertEquals(CurrencyTypeEnum.FRANC, fiveFrancs.currency());
+    }
 }

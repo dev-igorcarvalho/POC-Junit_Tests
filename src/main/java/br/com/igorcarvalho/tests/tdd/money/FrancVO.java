@@ -10,4 +10,9 @@ public class FrancVO extends MoneyVO {
     public MoneyVO times(double value) {
         return new FrancVO(this.amount * value);
     }
+
+    @Override
+    public CurrencyTypeEnum currency() {
+        return CurrencyTypeEnum.FRANC;
+    }
 }

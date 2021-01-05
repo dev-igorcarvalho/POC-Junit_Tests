@@ -12,6 +12,8 @@ public abstract class MoneyVO {
         return amount;
     }
 
+    public abstract CurrencyTypeEnum currency();
+
     public abstract MoneyVO times(final double value);
 
     @Override
