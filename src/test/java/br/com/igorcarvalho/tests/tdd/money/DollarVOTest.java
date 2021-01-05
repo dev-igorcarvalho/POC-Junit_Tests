@@ -22,9 +22,10 @@ class DollarVOTest {
 
     @Test
     void equalityTest() {
-        assertAll("equality teste",
+        assertAll("equality test",
                 () -> assertEquals(fiveDollars, new DollarVO(5.0)),
-                () -> assertNotEquals(fiveDollars, new DollarVO(7))
+                () -> assertNotEquals(fiveDollars, new DollarVO(7.0)),
+                () -> assertNotEquals(fiveDollars, new FrancVO(5.0))
         );
     }
 }
