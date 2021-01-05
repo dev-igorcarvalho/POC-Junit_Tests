@@ -4,11 +4,11 @@ public class Dollar {
 
     private final double amount;
 
-    public Dollar(double value) {
+    public Dollar(final double value) {
         this.amount=value;
     }
 
-    public Dollar times(double value) {
+    public Dollar times(final double value) {
         return new Dollar(this.amount*value);
     }
 
