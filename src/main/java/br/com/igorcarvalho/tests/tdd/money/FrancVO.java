@@ -8,6 +8,6 @@ public class FrancVO extends MoneyVO {
 
     @Override
     public MoneyVO times(double value) {
-        return new FrancVO(this.getAmount() * value);
+        return new FrancVO(this.amount * value);
     }
 }

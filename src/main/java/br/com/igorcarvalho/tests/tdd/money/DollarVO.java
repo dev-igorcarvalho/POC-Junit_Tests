@@ -8,6 +8,6 @@ public class DollarVO extends MoneyVO {
 
     @Override
     public MoneyVO times(double value) {
-        return new DollarVO(this.getAmount() * value);
+        return new DollarVO(this.amount * value);
     }
 }
