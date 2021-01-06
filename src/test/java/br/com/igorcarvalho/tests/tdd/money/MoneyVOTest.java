@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DollarVOTest {
+class MoneyVOTest {
 
     MoneyVO fiveDollars;
+    MoneyVO fiveFrancs;
 
     @BeforeEach
     void setUp() {
         fiveDollars = new MoneyVO(5.0, CurrencyTypeEnum.DOLLAR);
+        fiveFrancs = new MoneyVO(5.0, CurrencyTypeEnum.FRANC);
     }
 
     @Test
@@ -25,12 +27,8 @@ class DollarVOTest {
         assertAll("equality test",
                 () -> assertEquals(fiveDollars, new MoneyVO(5.0, CurrencyTypeEnum.DOLLAR)),
                 () -> assertNotEquals(fiveDollars, new MoneyVO(7.0, CurrencyTypeEnum.DOLLAR)),
-                () -> assertNotEquals(fiveDollars, new MoneyVO(5.0, CurrencyTypeEnum.FRANC))
+                () -> assertNotEquals(fiveDollars, fiveFrancs)
         );
     }
 
-    @Test
-    void currencyEqualityTest() {
-        assertEquals(CurrencyTypeEnum.DOLLAR, fiveDollars.currency());
-    }
 }

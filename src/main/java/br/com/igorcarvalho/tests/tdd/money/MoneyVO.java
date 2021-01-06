@@ -1,34 +1,53 @@
 package br.com.igorcarvalho.tests.tdd.money;
 
-public abstract class MoneyVO {
+public class MoneyVO {
 
-    protected final double amount;
+    private final double amount;
+    private final CurrencyTypeEnum currency;
 
-    protected MoneyVO(final double value) {
+    public MoneyVO(final double value, final CurrencyTypeEnum currency) {
         this.amount = value;
+        this.currency = currency;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public abstract CurrencyTypeEnum currency();
+    public CurrencyTypeEnum currency() {
+        return currency;
+    }
 
-    public abstract MoneyVO times(final double value);
+    public MoneyVO times(final double value) {
+        return new MoneyVO(this.amount*value,this.currency);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MoneyVO money = (MoneyVO) o;
+        MoneyVO moneyVO = (MoneyVO) o;
 
-        return Double.compare(money.amount, amount) == 0;
+        if (Double.compare(moneyVO.amount, amount) != 0) return false;
+        return currency == moneyVO.currency;
     }
 
     @Override
     public int hashCode() {
-        long temp = Double.doubleToLongBits(amount);
-        return (int) (temp ^ (temp >>> 32));
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(amount);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + currency.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MoneyVO{" +
+                "amount=" + amount +
+                ", currency=" + currency +
+                '}';
     }
 }
