@@ -2,8 +2,6 @@ package br.com.igorcarvalho.tests;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
