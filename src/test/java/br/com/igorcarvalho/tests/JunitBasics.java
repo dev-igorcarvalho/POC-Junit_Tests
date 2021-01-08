@@ -5,9 +5,12 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.Order;
 
-@SpringBootTest
+/**
+ * @SpringBootTest incia o spring e roda
+ * o teste dentro do spring container
+ * */
+//@SpringBootTest
 class JunitBasics {
     /**
      * Qualquer metodo que tenha a anotation @BeforeAll
@@ -66,21 +69,44 @@ class JunitBasics {
                 () -> assertEquals(number, 2),
                 () -> assertEquals(number, 3)
         );
-
     }
 
     /**
-     * @RepeatedTest
-     * Faz com q um teste seja reptido o numero de vezes solicitadas no value
+     * É possível agrupar varios grupos
+     * para testar objetos mais complexos
+     * e que tenham dependencias
+     */
+    @Test
+    void groupDependentAssertions() {
+        int number = 3;
+        assertAll("titulo do grupo",
+                () -> assertAll("subgrupo 1",
+                        () -> assertEquals(number, 1),
+                        () -> assertEquals(number, 2)
+                ),
+                () -> assertAll(
+                        "subgrupo 2",
+                        () -> assertEquals(number, 3),
+                        () -> assertEquals(number, 7)
+                )
+        );
+    }
+
+    /**
+     * @RepeatedTest Faz com q um teste seja reptido o numero de vezes solicitadas no value
      * e nas repetiçoes exibe o texto contido no @RepeatedTest(name="")
-     * */
+     */
     @DisplayName("Titulo principal")
     @RepeatedTest(value = 5,
             name = "Titulo da repetição 5x : repetição {currentRepetition} / {totalRepetitions}")
-    void repeatedTest(){
-     System.out.println("Rodando repetição do teste");
+    void repeatedTest() {
+        System.out.println("Rodando repetição do teste");
     }
 
+    /**
+     * Testa se a exception esperada foi
+     * realmente lançada
+     * */
     @Test
     void exceptionTesting() {
         assertThrows(IllegalArgumentException.class,
