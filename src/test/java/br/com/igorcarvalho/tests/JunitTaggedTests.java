@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * @Tag() marca uma classe ou metodo com uma tag
