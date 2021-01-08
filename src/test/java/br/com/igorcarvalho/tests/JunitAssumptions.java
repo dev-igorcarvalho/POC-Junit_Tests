@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assumptions.*;
  * Assumptions servem para fazer alguma validação que interrompe ou nao
  * as instruções subsequentes nos testes
  * */
-@SpringBootTest
+//@SpringBootTest
 class JunitAssumptions {
 
     /**
