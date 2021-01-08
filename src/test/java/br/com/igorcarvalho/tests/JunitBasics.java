@@ -105,6 +105,25 @@ class JunitBasics {
         System.out.println("Rodando repetição do teste");
     }
 
+
+    /**
+     * Junit permite passar dados do teste
+     * via DI para dentro do teste
+     * */
+    @Tag("TestDI")
+    @RepeatedTest(value = 2,
+            name = "Teste passando dados por DI")
+    void repeatedTestWithDi(TestInfo info, RepetitionInfo rep, TestReporter report) {
+        System.out.println(info.getDisplayName());
+        System.out.println(info.getTags());
+        System.out.println(info.getTestClass());
+        System.out.println(info.getTestMethod());
+        System.out.println(rep.getCurrentRepetition());
+        System.out.println(rep.getTotalRepetitions());
+//        report.publishEntry("Wtf");
+        report.publishEntry("Chave","Valor");
+    }
+
     /**
      * Testa se a exception esperada foi
      * realmente lançada
