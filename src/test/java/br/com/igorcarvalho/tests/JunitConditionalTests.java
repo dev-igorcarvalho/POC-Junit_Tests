@@ -1,11 +1,8 @@
 package br.com.igorcarvalho.tests;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.*;
-import org.springframework.test.context.junit.jupiter.DisabledIf;
 import org.springframework.test.context.junit.jupiter.EnabledIf;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @SpringBootTest incia o spring e roda

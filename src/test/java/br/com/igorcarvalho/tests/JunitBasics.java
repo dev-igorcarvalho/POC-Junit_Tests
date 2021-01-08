@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * o teste dentro do spring container
  * */
 //@SpringBootTest
+@DisplayName("Nome personalizado da classe")
 class JunitBasics {
     /**
      * Qualquer metodo que tenha a anotation @BeforeAll
@@ -48,7 +49,8 @@ class JunitBasics {
     /**
      * DisplayName modifica o nome que sera exibido
      * na tela de testes, exibindo a string ao invés
-     * do nome do metodo
+     * do nome do metodo.
+     * Tambem pode ser usado no nome da classe
      */
     @DisplayName("Nome personalizado")
     @Test
