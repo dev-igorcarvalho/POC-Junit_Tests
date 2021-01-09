@@ -142,6 +142,21 @@ class JunitParametrizedTests {
         assertNotNull(input);
     }
 
+    /**
+     * Nessa caso poderia ter sido passado
+     * uma classe qualquer de dominio do software
+     * para ser testada, ou ate mesmo mais de uma classes
+     * de dominio para serem comparadas uma com a outra
+     * igual foi feito no metodo anterior, porém o provedor
+     * de valores vem de outra classe que implements ArgumentsProvider
+     * isso ajuda a manter o a classe de teste mais limpa
+     * */
+    @ParameterizedTest
+    @ArgumentsSource(JunitCustomArgsProvider.class)
+    void customClassArgsProviderTest(BigDecimal input) {
+        assertNotNull(input);
+    }
+
 
     /**
      *  @CsvSource aceita um csv como parametro para
