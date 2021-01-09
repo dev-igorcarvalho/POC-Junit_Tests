@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * */
 //@SpringBootTest
 @DisplayName("Nome personalizado da classe")
-class JunitBasics {
+class JunitBasicTests {
     /**
      * Qualquer metodo que tenha a anotation @BeforeAll
      * vai ser executado antes de todos os testes

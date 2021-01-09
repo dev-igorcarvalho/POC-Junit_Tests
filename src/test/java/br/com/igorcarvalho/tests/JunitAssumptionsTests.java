@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assumptions.*;
  * as instruções subsequentes nos testes
  * */
 //@SpringBootTest
-class JunitAssumptions {
+class JunitAssumptionsTests {
 
     /**
      * Se a assumpption não for a esperado o teste é ignorado
