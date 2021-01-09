@@ -111,7 +111,7 @@ class JunitBasics {
      * via DI para dentro do teste
      * Tambem pode ser usado nos metodos before e after
      * porem o RepetitionInfo so funciona para repeated tests
-     * ou em before e after de classes que so tenham reapreted testes
+     * ou em before e after de classes que so tenham @RepeatedTest
      * */
     @Tag("TestDI")
     @RepeatedTest(value = 2,
