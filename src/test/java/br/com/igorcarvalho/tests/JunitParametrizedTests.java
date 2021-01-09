@@ -1,12 +1,9 @@
 package br.com.igorcarvalho.tests;
 
 import org.assertj.core.util.Strings;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.params.provider.*;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
@@ -14,7 +11,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@SpringBootTest
+//@SpringBootTest
 class JunitParametrizedTests {
 
     /**
@@ -24,8 +21,10 @@ class JunitParametrizedTests {
      * strings, classes. O tipo selecionado na
      * anotaçao deve ser passado na assinatura
      * do metodo de teste
+     * Pode se usar o parametro "name" na anotação
+     * para modificar o nome exibido em cada itereção
      */
-    @ParameterizedTest
+    @ParameterizedTest()
     @ValueSource(strings = {"string1", "string2", "string3"})
     void valueSourceParametrizedTest(String args) {
         assertTrue(args.contains("string"));
@@ -144,5 +143,53 @@ class JunitParametrizedTests {
     }
 
 
+    /**
+     *  @CsvSource aceita um csv como parametro para
+     *  ser testado. É necessário os dados no csv estejam
+     *  de acordo com o type dos parametros passados na
+     *  assinatura do teste
+     * */
+    @DisplayName("CSV")
+    @ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+    @CsvSource(value = {
+            "nome1, 22, 1.67",
+            "nome2, 33, 1.55",
+            "nome3, 44, 1.78",
+            "nome4, , 1.78",
+    })
+    void csvSourceTest(String nome, int idade, double altura) {
+        assertAll("Verficando CSV source",
+                ()->assertNotNull(nome),
+                ()->assertNotNull(idade),
+                ()->assertNotNull(altura)
+                );
+    }
+
+    /**
+     *  @CsvSource aceita um arquivos csv como parametro
+     *  para ser testado. É necessário os dados no csv
+     *  estejam de acordo com o type dos parametros
+     *  passados na  assinatura do teste
+     *  É necessario criar um resources folder na raiz
+     *  do pacote de testes e dar reload no maven project
+     *  para o junit achar o resources folder
+     *  É possivel modificar o delimitador com o parametro "delimiter"
+     *  É possivel modificar o encode com o parametro "encoding"
+     *  É possivel modificar separação de linhas/elementos
+     *  com o parametro "lineSeparator"
+     *  É possivel especificar que o junit ignore X numeros de linhas
+     *  geralmente linhas reservadas para headers ou codigos de identificaçao
+     *  do documento
+     * */
+    @DisplayName("Csv-File")
+    @ParameterizedTest(name = "Elemento [{index}] - {arguments}")
+    @CsvFileSource(numLinesToSkip = 1, resources = "/inputFile.csv")
+    void csvFileSourceTest(String nome, int idade, double altura) {
+        assertAll("Verficando CSV source",
+                ()->assertNotNull(nome),
+                ()->assertNotNull(idade),
+                ()->assertNotNull(altura)
+        );
+    }
 }
 
