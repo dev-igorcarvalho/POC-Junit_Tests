@@ -3,6 +3,7 @@ package br.com.igorcarvalho.tests;
 import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.*;
 
 import java.math.BigDecimal;
@@ -157,11 +158,10 @@ class JunitParametrizedTests {
         assertNotNull(input);
     }
 
-
     /**
      * Tambem é possível ter varias classes personalizadas
      * passando um stream de args para serem testados
-     * */
+     */
     @ParameterizedTest
     @ArgumentsSources(
             {@ArgumentsSource(JunitCustomArgsProvider.class),
@@ -169,6 +169,21 @@ class JunitParametrizedTests {
     )
     void multipleCustomClassArgsProviderTest(BigDecimal input) {
         assertNotNull(input);
+    }
+
+    /**
+     * É possível converter uma classe em outro tipo
+     * usando @ConvertWith passando como parametro uma
+     * classe customizade de conversao que extenda
+     * a SimpleArgumentConverter
+     * No exemplo abaixo estamos convertendo bigDecimals
+     * para String, e testando se os tipos sao iguais
+     * para atestar a conversão
+     * */
+    @ParameterizedTest
+    @ArgumentsSource(JunitCustomArgsProvider.class)
+    void customClassArgsProviderTes2t(@ConvertWith(JunitCustomArgsConverter.class) String input) {
+        assertEquals(String.class, input.getClass());
     }
 
 
