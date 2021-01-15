@@ -135,7 +135,7 @@ class JunitParametrizedTests {
      * para ser testada, ou ate mesmo mais de uma classes
      * de dominio para serem comparadas uma com a outra
      * igual foi feito no metodo anterior
-     * */
+     */
     @ParameterizedTest
     @MethodSource("bigDecimalProvider")
     void singleValuesMethodSourceTest(BigDecimal input) {
@@ -150,7 +150,7 @@ class JunitParametrizedTests {
      * igual foi feito no metodo anterior, porém o provedor
      * de valores vem de outra classe que implements ArgumentsProvider
      * isso ajuda a manter o a classe de teste mais limpa
-     * */
+     */
     @ParameterizedTest
     @ArgumentsSource(JunitCustomArgsProvider.class)
     void customClassArgsProviderTest(BigDecimal input) {
@@ -159,11 +159,25 @@ class JunitParametrizedTests {
 
 
     /**
-     *  @CsvSource aceita um csv como parametro para
-     *  ser testado. É necessário os dados no csv estejam
-     *  de acordo com o type dos parametros passados na
-     *  assinatura do teste
+     * Tambem é possível ter varias classes personalizadas
+     * passando um stream de args para serem testados
      * */
+    @ParameterizedTest
+    @ArgumentsSources(
+            {@ArgumentsSource(JunitCustomArgsProvider.class),
+                    @ArgumentsSource(JunitCustomArgsProvider2.class)}
+    )
+    void multipleCustomClassArgsProviderTest(BigDecimal input) {
+        assertNotNull(input);
+    }
+
+
+    /**
+     * @CsvSource aceita um csv como parametro para
+     * ser testado. É necessário os dados no csv estejam
+     * de acordo com o type dos parametros passados na
+     * assinatura do teste
+     */
     @DisplayName("CSV")
     @ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
     @CsvSource(value = {
@@ -174,36 +188,36 @@ class JunitParametrizedTests {
     })
     void csvSourceTest(String nome, int idade, double altura) {
         assertAll("Verficando CSV source",
-                ()->assertNotNull(nome),
-                ()->assertNotNull(idade),
-                ()->assertNotNull(altura)
-                );
+                () -> assertNotNull(nome),
+                () -> assertNotNull(idade),
+                () -> assertNotNull(altura)
+        );
     }
 
     /**
-     *  @CsvSource aceita um arquivos csv como parametro
-     *  para ser testado. É necessário os dados no csv
-     *  estejam de acordo com o type dos parametros
-     *  passados na  assinatura do teste
-     *  É necessario criar um resources folder na raiz
-     *  do pacote de testes e dar reload no maven project
-     *  para o junit achar o resources folder
-     *  É possivel modificar o delimitador com o parametro "delimiter"
-     *  É possivel modificar o encode com o parametro "encoding"
-     *  É possivel modificar separação de linhas/elementos
-     *  com o parametro "lineSeparator"
-     *  É possivel especificar que o junit ignore X numeros de linhas
-     *  geralmente linhas reservadas para headers ou codigos de identificaçao
-     *  do documento
-     * */
+     * @CsvSource aceita um arquivos csv como parametro
+     * para ser testado. É necessário os dados no csv
+     * estejam de acordo com o type dos parametros
+     * passados na  assinatura do teste
+     * É necessario criar um resources folder na raiz
+     * do pacote de testes e dar reload no maven project
+     * para o junit achar o resources folder
+     * É possivel modificar o delimitador com o parametro "delimiter"
+     * É possivel modificar o encode com o parametro "encoding"
+     * É possivel modificar separação de linhas/elementos
+     * com o parametro "lineSeparator"
+     * É possivel especificar que o junit ignore X numeros de linhas
+     * geralmente linhas reservadas para headers ou codigos de identificaçao
+     * do documento
+     */
     @DisplayName("Csv-File")
     @ParameterizedTest(name = "Elemento [{index}] - {arguments}")
     @CsvFileSource(numLinesToSkip = 1, resources = "/inputFile.csv")
     void csvFileSourceTest(String nome, int idade, double altura) {
         assertAll("Verficando CSV source",
-                ()->assertNotNull(nome),
-                ()->assertNotNull(idade),
-                ()->assertNotNull(altura)
+                () -> assertNotNull(nome),
+                () -> assertNotNull(idade),
+                () -> assertNotNull(altura)
         );
     }
 }
