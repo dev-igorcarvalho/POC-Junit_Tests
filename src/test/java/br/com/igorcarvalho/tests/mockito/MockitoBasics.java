@@ -1,5 +1,6 @@
 package br.com.igorcarvalho.tests.mockito;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,6 +44,22 @@ public class MockitoBasics {
 
     @Captor
     ArgumentCaptor<FakeEntity> entityCaptor;
+
+
+    @BeforeEach
+    void init() {
+        /**
+         * So pode ser colocada uma configuração
+         * dessas por classe nos metodos before
+         * e nao pode ser repetido nenhuma outra
+         * configuração dentro do corpo dos metodos
+         * de teste.
+         * Por esa razão a configuração abaixo esta comentada.
+         * é necessario descomenta-la para usar no metodo
+         * findByIdTest2()
+         * */
+//        when(this.repository.findById(2L)).thenReturn(new FakeEntity(2L, "mokito test"));
+    }
 
     /**
      * Teste apenas para verificar se o mockito esta
@@ -146,6 +163,23 @@ public class MockitoBasics {
     }
 
     /**
+     * Faz exatamente o q o metodo anterior faz
+     * porem a configuração do comportamento do mock
+     * esta no @BeforeEach para garantir que todos os
+     * metodos que usam esse mock vao se comportar igual
+     * e garantir a qualidade semantica no corpo do metodo
+     * contendo apenas codigo referente ao teste
+     * Apenas uma configuração deve ser usada no beforeEach
+     */
+    @Test
+    void findByIdTest2() {
+        final FakeEntity entity = this.repository.findById(2L);
+        assertAll("falhou em buscar a entidade correta",
+                () -> verify(repository).findById(2l),
+                () -> assertNotNull(entity.getId()));
+    }
+
+    /**
      * Neste exemplo ao configurar o comportamento
      * fizemos uso do metodo any() que  recebe como
      * parametro o tipo da classe q é solicitada na
@@ -194,9 +228,9 @@ public class MockitoBasics {
      * nao se tem acesso direto pelo Sut
      * Pode ser criado inline dentro do proprio teste
      * ou criado de forma global via annotation
-     *  @Captor
-     *  ArgumentCaptor<T> captor;
-     * */
+     *
+     * @Captor ArgumentCaptor<T> captor;
+     */
     @Test
     public void inlineArgumentCaptorTest() {
         //given
