@@ -49,16 +49,13 @@ public class MockitoWhenThen {
     @BeforeEach
     void init() {
         /**
-         * So pode ser colocada uma configuração
-         * dessas por classe nos metodos before
-         * e nao pode ser repetido nenhuma outra
-         * configuração dentro do corpo dos metodos
-         * de teste.
-         * Por esa razão a configuração abaixo esta comentada.
-         * é necessario descomenta-la para usar no metodo
-         * findByIdTest2()
+         * Toda configuração usada nos metodos before
+         * tem que ser usada em algum teste, senão o
+         * mockito joga uma exception reclamando de
+         * stub nao utilizada que esta sujando a classe
+         * com codigo morto
          * */
-//        when(this.repository.findById(2L)).thenReturn(new FakeEntity(2L, "mokito test"));
+        when(this.repository.findById(2L)).thenReturn(new FakeEntity(2L, "mokito test"));
     }
 
     /**
@@ -86,7 +83,6 @@ public class MockitoWhenThen {
      * metodos que usam esse mock vao se comportar igual
      * e garantir a qualidade semantica no corpo do metodo
      * contendo apenas codigo referente ao teste
-     * Apenas uma configuração deve ser usada no beforeEach
      */
     @Test
     void findByIdTest2() {

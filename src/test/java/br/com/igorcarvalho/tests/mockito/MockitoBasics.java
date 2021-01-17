@@ -42,25 +42,6 @@ public class MockitoBasics {
     @InjectMocks
     private FakeService service;
 
-    @Captor
-    ArgumentCaptor<FakeEntity> entityCaptor;
-
-
-    @BeforeEach
-    void init() {
-        /**
-         * So pode ser colocada uma configuração
-         * dessas por classe nos metodos before
-         * e nao pode ser repetido nenhuma outra
-         * configuração dentro do corpo dos metodos
-         * de teste.
-         * Por esa razão a configuração abaixo esta comentada.
-         * é necessario descomenta-la para usar no metodo
-         * findByIdTest2()
-         * */
-//        when(this.repository.findById(2L)).thenReturn(new FakeEntity(2L, "mokito test"));
-    }
-
     /**
      * Teste apenas para verificar se o mockito esta
      * criando os mocks e injetando as dependencias

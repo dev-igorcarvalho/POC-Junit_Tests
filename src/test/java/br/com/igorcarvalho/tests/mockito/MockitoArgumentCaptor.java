@@ -21,8 +21,8 @@ import static org.mockito.Mockito.*;
  * a partir das anotações do mockito
  */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Mockito when then")
-public class MockitoAdvanced {
+@DisplayName("Mockito argument captor")
+public class MockitoArgumentCaptor {
 
     /**
      * @Mock cria mocks de objetos simples
@@ -45,29 +45,12 @@ public class MockitoAdvanced {
     @Captor
     ArgumentCaptor<FakeEntity> entityCaptor;
 
-
-    @BeforeEach
-    void init() {
-        /**
-         * So pode ser colocada uma configuração
-         * dessas por classe nos metodos before
-         * e nao pode ser repetido nenhuma outra
-         * configuração dentro do corpo dos metodos
-         * de teste.
-         * Por esa razão a configuração abaixo esta comentada.
-         * é necessario descomenta-la para usar no metodo
-         * findByIdTest2()
-         * */
-//        when(this.repository.findById(2L)).thenReturn(new FakeEntity(2L, "mokito test"));
-    }
-
-
     /**
      * ArgumentCaptor serve para capturar
      * os argumentos usados em um metodo que
      * nao se tem acesso direto pelo Sut
      * Pode ser criado inline dentro do proprio teste
-     * ou criado de forma global via annotation
+     * ou criado de forma global via annotation.
      *
      * @Captor ArgumentCaptor<T> captor;
      */
