@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests;
+package br.com.igorcarvalho.tests.junit;
 
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;

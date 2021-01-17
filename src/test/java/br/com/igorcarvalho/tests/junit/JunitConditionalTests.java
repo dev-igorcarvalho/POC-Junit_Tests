@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests;
+package br.com.igorcarvalho.tests.junit;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.*;

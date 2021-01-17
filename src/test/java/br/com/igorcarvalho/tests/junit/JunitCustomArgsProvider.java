@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests;
+package br.com.igorcarvalho.tests.junit;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;

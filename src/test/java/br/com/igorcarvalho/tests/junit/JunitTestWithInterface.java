@@ -1,9 +1,6 @@
-package br.com.igorcarvalho.tests;
+package br.com.igorcarvalho.tests.junit;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @SpringBootTest incia o spring e roda

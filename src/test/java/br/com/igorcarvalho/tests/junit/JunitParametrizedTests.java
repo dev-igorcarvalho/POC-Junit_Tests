@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests;
+package br.com.igorcarvalho.tests.junit;
 
 import org.assertj.core.util.Strings;
 import org.junit.jupiter.api.DisplayName;
