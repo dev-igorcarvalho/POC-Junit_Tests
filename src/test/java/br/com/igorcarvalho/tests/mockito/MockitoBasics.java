@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,6 +29,10 @@ public class MockitoBasics {
      */
     @Mock
     private FakeRepository repository;
+
+    @Mock
+    private FakeEntityFactory factory;
+
 
     /**
      * Cria mocks de objetos que tenham
@@ -124,6 +125,29 @@ public class MockitoBasics {
         this.repository.findById(1l);
         verify(repository, never()).findById(2l);
     }
+
+    /**
+     * Verifica se o metodo sob teste
+     * foi nunca foi chamado
+     */
+    @Test
+    void verifyZeroTest() {
+        service.update(new FakeEntity(71L, "fake"));
+        verifyZeroInteractions(factory);
+    }
+    /**
+     * Verifica se o metodo sob teste
+     * não foi mais ultilizado a partir
+     * daquele ponto
+     */
+    @Test
+    void verifyNoMoreInteractionsTest() {
+        service.saveRandom();
+        verify(repository).save(any());
+        verifyNoMoreInteractions(repository);
+    }
+
+
 }
 
 
