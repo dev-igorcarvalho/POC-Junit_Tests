@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests.tdd.money;
+package br.com.igorcarvalho.tests.examples.tdd.money;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

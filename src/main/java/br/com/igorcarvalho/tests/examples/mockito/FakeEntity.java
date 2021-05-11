@@ -1,4 +1,4 @@
-package br.com.igorcarvalho.tests.mockito;
+package br.com.igorcarvalho.tests.examples.mockito;
 
 public class FakeEntity {
     private Long id;

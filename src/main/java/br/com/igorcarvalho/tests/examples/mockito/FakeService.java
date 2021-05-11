@@ -1,4 +1,5 @@
-package br.com.igorcarvalho.tests.mockito;
+package br.com.igorcarvalho.tests.examples.mockito;
+import br.com.igorcarvalho.tests.examples.mockito.FakeRepository;
 
 public class FakeService {
 
