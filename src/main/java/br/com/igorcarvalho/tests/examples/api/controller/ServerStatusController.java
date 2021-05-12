@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Created by : 01001001 01000011 at 12/05/2021
+ */
 @RestController
 @Slf4j
 @RequestMapping(ServerStatusController.BASE_URL)
